@@ -10,7 +10,7 @@ Alarm::Alarm()
 }
 
 void Alarm::setup()
-{ 
+{
     // Setup EEPROM values if need be
     for (unsigned int i = 0; i < ALARM_TOTAL; i++)
     {

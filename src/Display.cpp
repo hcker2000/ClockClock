@@ -4,7 +4,7 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
-#include <TimeLib.h>              //https://github.com/PaulStoffregen/Time
+#include <TimeLib.h> //https://github.com/PaulStoffregen/Time
 
 Display::Display()
 {
@@ -15,16 +15,17 @@ Display::Display()
 
 void Display::setup()
 {
-  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3C (for the 64x48);
-  delay(250);
-  display.clearDisplay();
+    display.begin(SSD1306_SWITCHCAPVCC, 0x3C); // initialize with the I2C addr 0x3C (for the 64x48);
+    delay(1);
+    display.clearDisplay();
 }
 
 void Display::loop(time_t &t)
 {
     localTime = t;
-    
-    if (second(localTime) != second(lastUpdate)) {
+
+    if (second(localTime) != second(lastUpdate))
+    {
         lastUpdate = localTime;
         updateDisplay();
     }
@@ -33,7 +34,7 @@ void Display::loop(time_t &t)
 void Display::updateDisplay()
 {
     String sHourMinute = PadDigit::format(hourFormat12(localTime)) + ":" + PadDigit::format(minute(localTime));
-    
+
     String amPm = "";
 
     if (isAM(localTime))
@@ -56,17 +57,18 @@ void Display::updateDisplay()
     display.setCursor(51, 32);
     display.setTextSize(2);
     display.println(amPm);
-    
+
     display.setCursor(0, 55);
     display.setTextSize(0);
-    display.println((String) ntpChar + " " + (String) ip);
+    display.println((String)ntpChar + " " + (String)ip);
 
     display.display();
 }
 
 void Display::ntpStatus(bool status)
 {
-    if(status){
+    if (status)
+    {
         ntpChar = (char)24;
         return;
     }
@@ -75,7 +77,7 @@ void Display::ntpStatus(bool status)
 }
 
 void Display::showWifiInstructions(String apName)
-{   
+{
     display.setTextSize(2);
     display.setTextColor(WHITE);
     display.setCursor(0, 0);
