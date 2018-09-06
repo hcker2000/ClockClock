@@ -7,18 +7,19 @@
 
 class Display
 {
-  public:
-    Display();
-    void setup();
-    void loop(time_t &t);
-    void ntpStatus(bool status);
-    void showWifiInstructions(String apName);
-    String ip;
-  private:
-    time_t localTime;
-    time_t lastUpdate;
-    Adafruit_SSD1306 display;
-    void updateDisplay();
-    char ntpChar;
+public:
+  Display();
+  void setup();
+  void loop(time_t &t);
+  void ntpStatus(bool status);
+  void showWifiInstructions(String apName);
+  String ip;
+
+private:
+  time_t localTime;
+  time_t lastUpdate;
+  Adafruit_SSD1306 display;
+  void updateDisplay();
+  char ntpChar;
 };
 #endif
