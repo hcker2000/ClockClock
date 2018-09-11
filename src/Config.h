@@ -17,9 +17,9 @@ const unsigned int ENABLED_STATE = 1;
 const unsigned int DELETED_STATE = 2;
 const unsigned int START_FADE = 15;                                       // Controlls how long before the alarm that the leds will start fading in. This is in minutes
 const unsigned long TIME_BETWEEN_LED_STEPS = (START_FADE * 60000) / 1024; // Milliseconds between led levels
-static const uint8_t LED_PIN = D3;
-static const uint8_t VIBE_PIN = D4;
-static const uint8_t BUZZER_PIN = D0;
+static const uint8_t LED_PIN = D5;
+static const uint8_t VIBE_PIN = D6;
+static const uint8_t BUZZER_PIN = D7;
 //static const uint8_t BUZZER_PIN = LED_PIN;
 
 #endif
