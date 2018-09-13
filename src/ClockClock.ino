@@ -1,6 +1,5 @@
 #include "Config.h"
 #include "Html.h"
-#include <EEPROM.h>
 #include <TimeLib.h>  //https://github.com/PaulStoffregen/Time
 #include <Timezone.h> //https://github.com/JChristensen/Timezone
 #include <ESP8266WiFi.h>
@@ -62,8 +61,6 @@ void setup()
   setSyncProvider(getNtpTime);
   setSyncInterval(5); // update from ntp every 5 seconds
 
-  EEPROM.begin(56);
-
   htmlLib.setup();
 }
 
@@ -72,10 +69,11 @@ void loop()
   if (WiFi.status() == WL_CONNECTED)
   {
     IPAddress myIP = WiFi.localIP();
-    String ipStr = String(myIP[0])+"."+String(myIP[1])+"."+String(myIP[2])+"."+String(myIP[3]);
+    String ipStr = String(myIP[0]) + "." + String(myIP[1]) + "." + String(myIP[2]) + "." + String(myIP[3]);
     oledDisplay.ip = ipStr;
   }
-  else{
+  else
+  {
     oledDisplay.ip = "";
   }
 
@@ -121,15 +119,15 @@ time_t getNtpTime()
       secsSince1900 |= (unsigned long)packetBuffer[41] << 16;
       secsSince1900 |= (unsigned long)packetBuffer[42] << 8;
       secsSince1900 |= (unsigned long)packetBuffer[43];
-      
+
       setSyncInterval(300); // update from ntp every 5 minutes
       return secsSince1900 - 2208988800UL + timeZone * SECS_PER_HOUR;
     }
   }
   oledDisplay.ntpStatus(false);
-  
+
   setSyncInterval(5); // update from ntp every 5 seconds
-  return 0; // return 0 if unable to get the time
+  return 0;           // return 0 if unable to get the time
 }
 
 // send an NTP request to the time server at the given address

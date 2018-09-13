@@ -20,6 +20,9 @@ private:
   bool alarmRunning = false;
   void check();
   void process();
+  void clear();
+  void interuptHandler();
   byte eepromByte = 0;
+  unsigned int ledLevel = 0;
 };
 #endif

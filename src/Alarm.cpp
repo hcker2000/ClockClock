@@ -2,6 +2,7 @@
 #include "Config.h"
 #include "PadDigit.h"
 #include <Arduino.h>
+#include <FunctionalInterrupt.h>
 #include <EEPROM.h>
 #include <TimeLib.h> //https://github.com/PaulStoffregen/Time
 
@@ -11,6 +12,8 @@ Alarm::Alarm()
 
 void Alarm::setup()
 {
+    EEPROM.begin(56);
+
     // Setup EEPROM values if need be
     for (unsigned int i = 0; i < ALARM_TOTAL; i++)
     {
@@ -29,16 +32,21 @@ void Alarm::setup()
     pinMode(VIBE_PIN, OUTPUT);
     pinMode(BUZZER_PIN, OUTPUT);
 
+    // Setup input pins
+    pinMode(OFF_PIN, INPUT_PULLUP);
+
     analogWrite(LED_PIN, 0);
     digitalWrite(VIBE_PIN, LOW);
     digitalWrite(BUZZER_PIN, LOW);
+
+    attachInterrupt(OFF_PIN, std::bind(&Alarm::interuptHandler, this), FALLING);
 }
 
 void Alarm::loop(time_t &t)
 {
     localTime = t;
 
-    if (second(localTime) != second(lastUpdate))
+    if (minute(localTime) != minute(lastUpdate))
     {
         lastUpdate = localTime;
         check();
@@ -105,7 +113,6 @@ void Alarm::check()
 
 void Alarm::process()
 {
-    static unsigned int ledLevel = 0;
     static unsigned long lastStepTime = millis();
     static unsigned long lastDigitalTime = millis();
     static bool isDigitalOn = false;
@@ -163,11 +170,30 @@ void Alarm::process()
 
         if (localTime >= alarmEndTime)
         {
-            alarmRunning = false;
-            ledLevel = 0;
-            analogWrite(LED_PIN, 0);
-            digitalWrite(VIBE_PIN, LOW);
-            digitalWrite(BUZZER_PIN, LOW);
+            clear();
         }
     }
+}
+
+void Alarm::interuptHandler()
+{
+    static unsigned long last_interupt_time = 0;
+    unsigned long now = millis();
+
+    if (now - last_interupt_time > 500)
+    {
+        Serial.println("Alarm Off");
+        clear();
+    }
+
+    last_interupt_time = now;
+}
+
+void Alarm::clear()
+{
+    alarmRunning = false;
+    ledLevel = 0;
+    analogWrite(LED_PIN, 0);
+    digitalWrite(VIBE_PIN, LOW);
+    digitalWrite(BUZZER_PIN, LOW);
 }
