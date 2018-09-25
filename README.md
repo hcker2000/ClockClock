@@ -15,3 +15,4 @@ Currently this is being developed on a wemos D1 and a 128x64 OLED display
 * Time is kept in sync via NTP lib at [https://github.com/PaulStoffregen/Time](https://github.com/PaulStoffregen/Time)
 * Timezone/Daylight savings time are handled via TimeZone lib at [https://github.com/JChristensen/Timezone](https://github.com/JChristensen/Timezone)
 * WiFi setup/config is provided by the amazing WiFi Config lib at [https://github.com/tzapu/WiFiManager](https://github.com/tzapu/WiFiManager)
+* OLED Display is provided by [https://github.com/stblassitude/Adafruit_SSD1306_Wemos_OLED](https://github.com/stblassitude/Adafruit_SSD1306_Wemos_OLED)
