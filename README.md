@@ -7,10 +7,12 @@
 * Alarm finishes one minute after scheduled alarm time
 * WiFi setup/config
 ## Hardware
-Currently this is being developed on a wemos D1 and a 128x64 OLED display
+Currently this is being developed on a wemos D1 and a 128x64 OLED display. Please ignore the flux in the pictures.
 ![PCB](/meta/pcb.jpg)
 ![3dtop](/meta/3d_top.jpg)
 ![32angle](/meta/3d_angle.jpg)
+![board_side_1](/meta/board_soldered_1.jpg)
+![board_side_2](/meta/board_soldered_2.jpg)
 ![oled_setup](/meta/oled_setup.jpg)
 ![oled_time](/meta/oled_time.jpg)
 ### Libraries
