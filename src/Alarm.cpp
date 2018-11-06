@@ -62,7 +62,7 @@ void Alarm::check()
         for (unsigned int i = 0; i < ALARM_TOTAL; i++)
         {
             int alarmEnabledIndex = i * 4;
-            eepromByte = EEPROM.read(alarmEnabledIndex); // I am keeping the enabled byte at the head of each "page". A page beeing four bytes consisting of enabled, day, hour, minute
+            eepromByte = EEPROM.read(alarmEnabledIndex); // I am keeping the enabled byte at the head of each "page". A page being four bytes consisting of enabled, day, hour, minute
             if (eepromByte == ENABLED_STATE)
             {
                 byte aDay = EEPROM.read(alarmEnabledIndex + 1);
