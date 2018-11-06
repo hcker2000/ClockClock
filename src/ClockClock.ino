@@ -18,7 +18,7 @@ unsigned int localPort = 8888; // local port to listen for UDP packets
 
 TimeChangeRule dstStart = {"EDT", Second, Sun, Mar, 2, -240}; //UTC - 4 hours
 TimeChangeRule dstEnd = {"EST", First, Sun, Nov, 2, -300};    //UTC - 5 hours
-Timezone localTimeZone(dstStart, dstStart);
+Timezone localTimeZone(dstStart, dstEnd);
 
 time_t getNtpTime();
 
