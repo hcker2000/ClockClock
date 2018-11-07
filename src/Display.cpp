@@ -11,6 +11,7 @@ Display::Display()
     Adafruit_SSD1306 display(OLED_RESET);
     localTime = 0;
     lastUpdate = 0;
+    inverted = false;
 }
 
 void Display::setup()
@@ -45,6 +46,8 @@ void Display::updateDisplay()
     {
         amPm = "PM";
     }
+
+    display.invertDisplay(inverted);
 
     Serial.println(sHourMinute);
 

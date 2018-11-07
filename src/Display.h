@@ -14,6 +14,7 @@ public:
   void ntpStatus(bool status);
   void showWifiInstructions(String apName);
   String ip;
+  bool inverted;
 
 private:
   time_t localTime;

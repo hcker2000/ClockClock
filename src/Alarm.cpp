@@ -197,3 +197,8 @@ void Alarm::clear()
     digitalWrite(VIBE_PIN, LOW);
     digitalWrite(BUZZER_PIN, LOW);
 }
+
+bool Alarm::running()
+{
+    return alarmRunning;
+}

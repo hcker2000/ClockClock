@@ -9,6 +9,7 @@ public:
   Alarm();
   void setup();
   void loop(time_t &t);
+  bool running();
 
 private:
   time_t localTime;

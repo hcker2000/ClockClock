@@ -82,6 +82,7 @@ void loop()
   if (timeStatus() != timeNotSet)
   {
     time_t localTime = localTimeZone.toLocal(now());
+    oledDisplay.inverted = alarm.running();
     oledDisplay.loop(localTime);
     alarm.loop(localTime);
   }
