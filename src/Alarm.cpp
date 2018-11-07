@@ -71,7 +71,7 @@ void Alarm::check()
 
                 // Check to see if we need to handle wraping back to the last minute
                 int i = (aMinute - START_FADE);
-                if ((aMinute - START_FADE) < 0)
+                if (i < 0)
                 {
                     aMinute = 60 + i; // adding a negative number
 
