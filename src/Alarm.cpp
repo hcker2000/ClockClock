@@ -39,7 +39,7 @@ void Alarm::setup()
     digitalWrite(VIBE_PIN, LOW);
     digitalWrite(BUZZER_PIN, LOW);
 
-    attachInterrupt(OFF_PIN, std::bind(&Alarm::interuptHandler, this), FALLING);
+    attachInterrupt(OFF_PIN, std::bind(&Alarm::interruptHandler, this), FALLING);
 }
 
 void Alarm::loop(time_t &t)
@@ -175,12 +175,12 @@ void Alarm::process()
     }
 }
 
-void Alarm::interuptHandler()
+void Alarm::interruptHandler()
 {
     static unsigned long last_interupt_time = 0;
     unsigned long now = millis();
 
-    if (now - last_interupt_time > 500)
+    if (now - last_interupt_time > 100)
     {
         Serial.println("Alarm Off");
         clear();

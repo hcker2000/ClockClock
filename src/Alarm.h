@@ -22,7 +22,7 @@ private:
   void check();
   void process();
   void clear();
-  void interuptHandler();
+  void interruptHandler();
   byte eepromByte = 0;
   unsigned int ledLevel = 0;
 };
